@@ -2,7 +2,6 @@
 
 import { readFile, writeFile } from 'fs/promises';
 import { revalidatePath } from 'next/cache';
-import { redirect } from 'next/navigation';
 
 
 type User = {
@@ -11,7 +10,10 @@ type User = {
   lastName: string;
 };
 
-export const createUser = async (formData: FormData) => {
+export const createUser = async (prevState: any, formData: FormData) => {
+  // current state of the form
+  console.log(prevState);
+
   const firstName = formData.get('firstName') as string;
   const lastName = formData.get('lastName') as string;
   const newUser: User = { firstName, lastName, id: Date.now().toString() };
