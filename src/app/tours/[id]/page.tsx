@@ -1,11 +1,16 @@
-import mapsImg from '@/app/images/maps.jpg';
+
 import Image from 'next/image';
+import  mapsImg  from '@/app/images/maps.jpg';
+
 const url = 'https://www.course-api.com/images/tours/tour-1.jpeg';
 
-const page = async ({ params }: { params: { id: string } }) => {
+const page = async ({ params }: { params: Promise<{ id: string }> }) => {
+
+  const { id } = await params;
+
   return (
     <div>
-      <h1 className='text-4xl'>ID : {params.id}</h1>
+      <h1 className='text-4xl'>ID : {id}</h1>
       <section className='flex gap-x-4 mt-4'>
         <div>
           <Image
